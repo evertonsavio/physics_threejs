@@ -36,6 +36,22 @@ const environmentMapTexture = cubeTextureLoader.load([
 ])
 
 /**
+ * Physics
+ */
+
+const world = new CANNON.World()
+world.gravity.set(0, - 9.82, 0)
+
+//sphere
+const sphereShape = new CANNON.Sphere(0.5)//https://schteppe.github.io/cannon.js/docs/classes/Body.html
+const sphereBody = new CANNON.Body({
+    mass: 1,
+    position: new CANNON.Vec3(0, 3, 0),
+    shape: sphereShape
+})
+world.addBody(sphereBody)
+
+/**
  * Test sphere
  */
 const sphere = new THREE.Mesh(
@@ -132,9 +148,20 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
  * Animate
  */
 const clock = new THREE.Clock()
+let oldElapsedTime = 0
 
 const tick = () => {
+
     const elapsedTime = clock.getElapsedTime()
+    const deltaTime = elapsedTime - oldElapsedTime
+    oldElapsedTime = elapsedTime
+
+    //Update physics world
+    world.step(1 / 60, deltaTime, 3)
+
+    sphere.position.x = sphereBody.position.x
+    sphere.position.y = sphereBody.position.y
+    sphere.position.z = sphereBody.position.z
 
     // Update controls
     controls.update()
