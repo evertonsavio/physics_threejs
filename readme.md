@@ -14,3 +14,9 @@ npm run dev
 # Build for production in the dist/ directory
 npm run build
 ```
+
+``` bash
+# Install Cannon.js
+npm install --save cannon
+
+```
