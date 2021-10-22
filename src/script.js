@@ -53,10 +53,11 @@ const concretePlasticContactMaterial = new CANNON.ContactMaterial(
     plasticMaterial,
     {
         friction: 0.1,
-        restitution: 0.7
+        restitution: 0.5
     }
 )
 world.addContactMaterial(concretePlasticContactMaterial)
+//world.defaultContactMaterial = concretePlasticContactMaterial
 
 //Sphere
 const sphereShape = new CANNON.Sphere(0.5)//https://schteppe.github.io/cannon.js/docs/classes/Body.html
