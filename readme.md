@@ -18,6 +18,11 @@ npm run build
 ``` bash
 # Install Cannon.js
 npm install --save cannon
+npm uninstall --save cannon
+npm install --save cannon-es@0.15.1
+import * as CANNON from 'cannon-es'
+
+https://github.com/pmndrs/cannon-es
 
 ```
 
