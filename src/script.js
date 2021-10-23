@@ -214,6 +214,7 @@ const createSphere = (radius, position) => {
 
 createSphere(0.5, { x: 0, y: 3, z: 0 })
 
+
 /**
  * Animate
  */
@@ -232,6 +233,9 @@ const tick = () => {
     world.step(1 / 60, deltaTime, 3)
 
     /*     sphere.position.copy(sphereBody.position) */
+    for (const object of objectsToUpdate) {
+        object.mesh.position.copy(object.body.position)
+    }
 
     // Update controls
     controls.update()
