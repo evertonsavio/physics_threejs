@@ -176,6 +176,9 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 /**
  * Utils
  */
+const objectsToUpdate = []
+
+
 const createSphere = (radius, position) => {
 
     //Three.js Mesh
@@ -201,6 +204,12 @@ const createSphere = (radius, position) => {
     })
     body.position.copy(position)
     world.addBody(body)
+
+    //Save in Objects to Update
+    objectsToUpdate.push({
+        mesh: mesh,
+        body: body
+    })
 }
 
 createSphere(0.5, { x: 0, y: 3, z: 0 })
